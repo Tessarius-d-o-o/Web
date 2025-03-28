@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
         errorMessage.style.display = "none";
         sentMessage.style.display = "none";
         
+        console.log("Form action:", form.action);
         fetch(form.action, {
             method: "POST",
             body: formData,

@@ -85,10 +85,10 @@ h6 {
 ------------------------------*/
 .php-email-form .error-message {
   display: none;
-  background: #df1529;
   color: #ffffff;
+  font-size: 0.8rem !important;
   text-align: left;
-  padding: 15px;
+  padding: 0px 15px;
   margin-bottom: 24px;
   font-weight: 600;
 }

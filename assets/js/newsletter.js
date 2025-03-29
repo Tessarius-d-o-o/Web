@@ -1,38 +1,36 @@
+const subscribeNewsletter = () => {
+  console.log('Usao')
+  const form = document.querySelector('.php-email-form');
+  const email = form.querySelector('[name="email"]').value;
+  const loading = document.querySelector('.loading');
+  const errorMessage = document.querySelector('.error-message');
+  const sentMessage = document.querySelector('.sent-message');
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector(".php-email-form").addEventListener("submit", function (event) {
-        event.preventDefault();
-        
-        var form = this;
-        var formData = new FormData(form);
-        var loading = document.querySelector(".loading");
-        var errorMessage = document.querySelector(".error-message");
-        var sentMessage = document.querySelector(".sent-message");
-        
-        loading.style.display = "block";
-        errorMessage.style.display = "none";
-        sentMessage.style.display = "none";
-        
-        console.log("Form action:", form.action);
-        fetch(form.action, {
-            method: "POST",
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            loading.style.display = "none";
-            if (data.status === "success") {
-                sentMessage.style.display = "block";
-                form.reset();
-            } else {
-                errorMessage.textContent = data.message;
-                errorMessage.style.display = "block";
-            }
-        })
-        .catch(error => {
-            loading.style.display = "none";
-            errorMessage.textContent = "Something went wrong. Please try again.";
-            errorMessage.style.display = "block";
-        });
+  // Show loading
+  loading.style.display = 'block';
+  errorMessage.style.display = 'none';
+  sentMessage.style.display = 'none';
+
+  // Send form data to the server
+  fetch('http://localhost:3000/newsletter', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email }),
+  })
+    .then(response => response.json())
+    .then(data => {
+      loading.style.display = 'none';
+      if (data.error) {
+        errorMessage.textContent = data.error;
+        errorMessage.style.display = 'block';
+      } else if (data.message) {
+        sentMessage.textContent = data.message;
+        sentMessage.style.display = 'block';
+      }
+    })
+    .catch(err => {
+      loading.style.display = 'none';
+      errorMessage.textContent = 'Something went wrong. Please try again.';
+      errorMessage.style.display = 'block';
     });
-});
+};

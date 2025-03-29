@@ -60,6 +60,14 @@ body {
   font-family: var(--default-font);
 }
 
+.send-btn{
+  height:35px;
+  width: 250px;
+  background-color: beige;
+  border: 1px solid beige;
+  border-radius: 1px;
+}
+
 a {
   color: black;
   text-decoration: none;
@@ -96,8 +104,7 @@ h6 {
 .php-email-form .sent-message {
   display: none;
   color: #ffffff;
-  background: #059652;
-  text-align: center;
+  text-align: start;
   padding: 15px;
   margin-bottom: 24px;
   font-weight: 600;

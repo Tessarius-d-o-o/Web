@@ -471,9 +471,9 @@
                   naš newsletter i uvijek budi u toku.
                 </p>
                 <form
-                  action="forms/newsletter.php"
                   method="post"
                   class="php-email-form cta-form"
+                  onsubmit="event.preventDefault(); subscribeNewsletter();"
                 >
                   <div class="input-group mb-3">
                     <input
@@ -628,7 +628,7 @@
       <!-- /Faq 2 Section -->
 
       <!-- Contact Section -->
-      <section id="contact" class="contact section">
+      <section id="contact" class="container contact section">
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>Kontakt</h2>
@@ -639,76 +639,67 @@
         </div>
         <!-- End Section Title -->
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <form
+          method="post"
+          class="php-email-form cta-form mt-3"
+          onsubmit="event.preventDefault(); handleFormSubmit(event);"
+        >
           <div class="row gy-4">
-            <div class="col-lg-12">
-              <form
-                action="http://127.0.0.1:5500/forms/newsletter.php"
-                method="post"
-                class="php-email-form"
-                data-aos="fade-up"
-                data-aos-delay="200"
-              >
-                <div class="row gy-4">
-                  <div class="col-md-6">
-                    <label for="name-field" class="pb-2">Ime</label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name-field"
-                      class="form-control"
-                      required=""
-                    />
-                  </div>
-
-                  <div class="col-md-6">
-                    <label for="email-field" class="pb-2">Email</label>
-                    <input
-                      type="email"
-                      class="form-control"
-                      name="email"
-                      id="email-field"
-                      required=""
-                    />
-                  </div>
-
-                  <div class="col-md-12">
-                    <label for="subject-field" class="pb-2">Subject</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="subject"
-                      id="subject-field"
-                      required=""
-                    />
-                  </div>
-
-                  <div class="col-md-12">
-                    <label for="message-field" class="pb-2">Poruka</label>
-                    <textarea
-                      class="form-control"
-                      name="message"
-                      rows="10"
-                      id="message-field"
-                      required=""
-                    ></textarea>
-                  </div>
-
-                  <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">
-                      Your message has been sent. Thank you!
-                    </div>
-
-                    <button type="submit">Pošalji</button>
-                  </div>
-                </div>
-              </form>
+            <div class="col-md-6">
+              <label for="name-field" class="pb-2">Ime</label>
+              <input
+                type="text"
+                name="name"
+                id="name-field"
+                class="form-control"
+                required
+              />
             </div>
-            <!-- End Contact Form -->
+            <div class="col-md-6">
+              <label for="email-field" class="pb-2">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                id="email-field"
+                required
+              />
+            </div>
+            <div class="col-md-12">
+              <label for="subject-field" class="pb-2">Subject</label>
+              <input
+                type="text"
+                class="form-control"
+                name="subject"
+                id="subject-field"
+                required
+              />
+            </div>
+            <div class="col-md-12">
+              <label for="message-field" class="pb-2">Poruka</label>
+              <textarea
+                class="form-control"
+                name="message"
+                rows="10"
+                id="message-field"
+                required
+              ></textarea>
+            </div>
+            <div class="w-50">
+              <button class="send-btn mt-2">Pošalji</button>
+            </div>
+            <div class="col-md-12 text-center">
+              <div class="loading" style="display: none">Loading...</div>
+              <div
+                class="error-message"
+                style="display: none; color: red"
+              ></div>
+              <div class="sent-message" style="display: none; color: green">
+                Your message has been sent. Thank you!
+              </div>
+            </div>
           </div>
-        </div>
+        </form>
       </section>
       <!-- /Contact Section -->
     </main>

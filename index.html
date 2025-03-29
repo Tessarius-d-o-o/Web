@@ -102,62 +102,94 @@
           </h2>
         </div>
         <!-- End Section Title -->
-
         <div class="container">
           <div class="row gy-4">
+            <!-- YouTube Automation Paket 1 -->
             <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
               <div class="pricing-item">
-                <h3>YouTube Automation Paket</h3>
+                <h3>YouTube Automation Paket 1</h3>
                 <h4 class="mt-5"><sup>€</sup>29<span> / mjesečno</span></h4>
                 <ul class="mt-5">
                   <li>
-                    <i class="bi bi-check"></i>
-                    <span
+                    <i class="bi bi-check"></i
+                    ><span
                       >*Automatski se obnavlja svaki mjesec, možeš otkazati bilo
                       kad.</span
                     >
                   </li>
                 </ul>
-                <a href="#" class="buy-btn mt-5">Kupi sada</a>
+                <a
+                  href="#"
+                  id="payButton1"
+                  class="buy-btn mt-5"
+                  onclick="initializePayPalButton(29, 'paypal-button-container1', 'payButton1')"
+                  >Kupi sada</a
+                >
+                <div
+                  id="paypal-button-container1"
+                  class="mt-3"
+                  style="display: none"
+                ></div>
               </div>
             </div>
-            <!-- End Pricing Item -->
 
+            <!-- YouTube Automation Paket 2 -->
             <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
               <div class="pricing-item">
-                <h3>YouTube Automation Paket</h3>
-                <h4 class="mt-5"><sup>€</sup>29<span> / mjesečno</span></h4>
+                <h3>YouTube Automation Paket 2</h3>
+                <h4 class="mt-5"><sup>€</sup>49<span> / mjesečno</span></h4>
                 <ul class="mt-5">
                   <li>
-                    <i class="bi bi-check"></i>
-                    <span
+                    <i class="bi bi-check"></i
+                    ><span
                       >*Automatski se obnavlja svaki mjesec, možeš otkazati bilo
                       kad.</span
                     >
                   </li>
                 </ul>
-                <a href="#" class="buy-btn mt-5">Kupi sada</a>
+                <a
+                  href="#"
+                  id="payButton2"
+                  class="buy-btn mt-5"
+                  onclick="initializePayPalButton(49, 'paypal-button-container2', 'payButton2')"
+                  >Kupi sada</a
+                >
+                <div
+                  id="paypal-button-container2"
+                  class="mt-3"
+                  style="display: none"
+                ></div>
               </div>
             </div>
-            <!-- End Pricing Item -->
 
+            <!-- YouTube Automation Paket 3 -->
             <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
               <div class="pricing-item">
-                <h3>YouTube Automation Paket</h3>
-                <h4 class="mt-5"><sup>€</sup>29<span> / mjesečno</span></h4>
+                <h3>YouTube Automation Paket 3</h3>
+                <h4 class="mt-5"><sup>€</sup>69<span> / mjesečno</span></h4>
                 <ul class="mt-5">
                   <li>
-                    <i class="bi bi-check"></i>
-                    <span
+                    <i class="bi bi-check"></i
+                    ><span
                       >*Automatski se obnavlja svaki mjesec, možeš otkazati bilo
                       kad.</span
                     >
                   </li>
                 </ul>
-                <a href="#" class="buy-btn mt-5">Kupi sada</a>
+                <a
+                  href="#"
+                  id="payButton3"
+                  class="buy-btn mt-5"
+                  onclick="initializePayPalButton(69, 'paypal-button-container3', 'payButton3')"
+                  >Kupi sada</a
+                >
+                <div
+                  id="paypal-button-container3"
+                  class="mt-3"
+                  style="display: none"
+                ></div>
               </div>
             </div>
-            <!-- End Pricing Item -->
           </div>
         </div>
       </section>
@@ -744,6 +776,81 @@
 
     <!-- Preloader -->
     <div id="preloader"></div>
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AW77mMdXFM_B_nPZ0f-VILdcc_JBco7U3wyBrrvJRTCJRB4QQRVY3vfYwt2WBhjbGKDHyM4uWYeXoSHu&currency=USD"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to initialize and render PayPal button
+        window.initializePayPalButton = function (
+          amount,
+          containerId,
+          buttonId
+        ) {
+          // Hide all PayPal button containers and disable all other buttons
+          var allContainers = document.querySelectorAll(
+            ".paypal-button-container"
+          );
+          var allButtons = document.querySelectorAll(".buy-btn");
+
+          // Hide all PayPal containers and disable all other buttons
+          allContainers.forEach(function (container) {
+            container.style.display = "none";
+          });
+          allButtons.forEach(function (button) {
+            button.style.pointerEvents = "none"; // Disable button (prevents clicking)
+            button.style.opacity = "0.5"; // Make it look disabled
+          });
+
+          // Show the selected PayPal button container
+          var selectedContainer = document.getElementById(containerId);
+          if (selectedContainer) {
+            selectedContainer.style.display = "block";
+
+            // Render the PayPal button dynamically
+            paypal
+              .Buttons({
+                createOrder: function (data, actions) {
+                  return actions.order.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          value: amount, // Use the passed amount for the payment
+                        },
+                      },
+                    ],
+                  });
+                },
+                onApprove: function (data, actions) {
+                  return actions.order.capture().then(function (details) {
+                    alert(
+                      "Payment successful! Thank you, " +
+                        details.payer.name.given_name
+                    );
+                    // Optionally, redirect user after payment
+                    window.location.href = "success.html"; // Redirect to a "Thank You" page
+                  });
+                },
+                onError: function (err) {
+                  console.error("Payment Error: ", err);
+                  alert(
+                    "There was an error processing your payment. Please try again."
+                  );
+                },
+              })
+              .render("#" + containerId); // Renders PayPal button inside the container
+          } else {
+            console.error("Container not found for ID: " + containerId);
+          }
+
+          // Disable the clicked button
+          var selectedButton = document.getElementById(buttonId);
+          if (selectedButton) {
+            selectedButton.style.pointerEvents = "none";
+            selectedButton.style.opacity = "0.5";
+          }
+        };
+      });
+    </script>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

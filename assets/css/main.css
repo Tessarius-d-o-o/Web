@@ -159,7 +159,7 @@ h6 {
 }
 
 .header .logo img {
-  margin: -121px -87px !important;
+  margin: -121px -73px !important;
   width: 19rem;
 }
 
@@ -270,8 +270,6 @@ h6 {
   .navmenu .active,
   .navmenu .active:focus {
     color: white;
-    text-shadow: 2px 2px 0px black, 4px 4px 0px gray;
-
   }
 
   .navmenu .dropdown ul {
@@ -861,6 +859,12 @@ section,
   align-items: center;
 }
 
+.hero_content{
+  
+    border-radius: 0.8rem;
+    padding: 30px 30px;
+}
+
 .hero h1 {
   margin: 0;
   font-size: 48px;
@@ -869,7 +873,6 @@ section,
 }
 
 .hero p {
-  text-shadow: 2px 2px 0px black, 4px 4px 0px gray;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   margin: 5px 0 30px 0;
   font-size: 22px;
@@ -921,6 +924,16 @@ section,
 
 .hero .animated {
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@media (max-width: 768px) {
+  .hero{
+    min-height: 80vh;
+    background-position: end;
+    align-items: start;
+    padding: 30px 0px 0px 0px;
+  }
+  
 }
 
 @media (max-width: 640px) {

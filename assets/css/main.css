@@ -6,7 +6,7 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Open Sans",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --default-font: 'Montserrat', sans-serif;;
   --heading-font: "Jost",  sans-serif;
   --nav-font: "Poppins",  sans-serif;
 }
@@ -87,6 +87,7 @@ h5,
 h6 {
   color: var(--heading-color);
   font-family: var(--heading-font);
+  font-weight: 600 !important;
 }
 
 /* PHP Email Form Messages
@@ -158,8 +159,8 @@ h6 {
 }
 
 .header .logo img {
-  height: 150px;
-  width: 400px;
+  margin: -121px -87px !important;
+  width: 19rem;
 }
 
 .header .logo h1 {
@@ -245,7 +246,7 @@ h6 {
     padding: 18px 15px;
     font-size: 15px;
     font-family: var(--nav-font);
-    font-weight: 400;
+    font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -269,6 +270,8 @@ h6 {
   .navmenu .active,
   .navmenu .active:focus {
     color: white;
+    text-shadow: 2px 2px 0px black, 4px 4px 0px gray;
+
   }
 
   .navmenu .dropdown ul {
@@ -846,12 +849,12 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
-  background-image: url('../img/hero9.jpg');
+  background-image: url('../img/hero12.jpg');
   background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
+  background-position: center;
   width: 100%;
-  min-height: 40vh;
+  min-height: 80vh;
   position: relative;
   padding: 90px 0 60px 0;
   display: flex;
@@ -866,6 +869,7 @@ section,
 }
 
 .hero p {
+  text-shadow: 2px 2px 0px black, 4px 4px 0px gray;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   margin: 5px 0 30px 0;
   font-size: 22px;

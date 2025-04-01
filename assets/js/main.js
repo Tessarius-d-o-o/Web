@@ -15,6 +15,23 @@
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
+    const logo = document.querySelector('#logo'); // Select your logo element
+    const navItems = document.querySelectorAll('#navmenu ul li a'); // Select all nav links
+
+    if (window.scrollY > 40) {
+      selectBody.classList.add('scrolled');
+      logo.src = 'assets/img/logo-white.png'; // Change to new logo
+      navItems.forEach(item => {
+        item.style.color = 'white'; // Change to scrolled color (black)
+    });
+  } else {
+      selectBody.classList.remove('scrolled');
+      logo.src = 'assets/img/logo.svg'; // Revert to original logo
+      navItems.forEach(item => {
+        item.style.color = 'gray'; // Change back to original color (white)
+    });
+  }
+
     if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
     window.scrollY > 40 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
   }
